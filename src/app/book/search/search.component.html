@@ -1,0 +1,25 @@
+<div>
+  <input type="text" name="" id="" placeholder="Search..." #iptSearch class="form-control mb-3 " (keyup)="onSearch(iptSearch.value)">
+  <br>
+  <div class="row">
+    <div *ngFor="let book of dataBook,let index = index" class="col-12 col-sm-6 col-md-6 text-center">
+      <div class="img-book">
+        <a href="{{book.volumeInfo.infoLink}}" target="_blank">
+          <div *ngIf="book.volumeInfo.imageLinks.smallThumbnail">
+            <img src="{{ book.volumeInfo.imageLinks.smallThumbnail}}" alt="{{book.volumeInfo.title}}" class="img-responsive">
+          </div>
+          <div *ngIf="!book.volumeInfo.imageLinks.smallThumbnail">
+            <img src="{{ book.volumeInfo.imageLinks.thumbnail}}" alt="{{book.volumeInfo.title}}" class="img-responsive">
+          </div>
+        </a>
+      </div>
+      <div class="not-img-book">
+        <p class="text-danger mt-3 font-weight-bold title-book">{{book.volumeInfo.title }}</p>
+        <p class="text-danger mt-3 font-weight-bold description-book">{{book.volumeInfo.description }}</p>
+        <button class="btn btn-danger" (click)="addBook(book)">
+          Add to List Book</button>
+      </div>
+
+    </div>
+  </div>
+</div>

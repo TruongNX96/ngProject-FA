@@ -1,0 +1,31 @@
+<h1>Chat Messages</h1>
+<div *ngFor="let msg of listMsg" id="content" class="mb-3">
+  <div class="bg-info text-light px-3">
+    <span>
+      From: {{msg.email}}
+    </span>
+    <span style="float:right">
+      {{msg.time}}
+    </span>
+  </div>
+  <div id="content1" class="mb-5">
+    <p class="py-2">
+      {{msg.msg}}
+    </p>
+  </div>
+</div>
+<div>
+  <form [formGroup]="chatForm">
+    <div *ngIf=" status == 'true' && uid !==authService.account.uid">Someone is typing ...</div>
+    <textarea style="width: 100%" class="form-group" name="textarea" id="textarea" rows="7" placeholder="Write a reply ......."
+      formControlName="textarea"></textarea>
+    <div class="row" style="width: 100%;">
+      <div class="col-12 col-sm-4 col-md-4"></div>
+      <div class="col-12 col-sm-4 col-md-4">
+        <button class="btn btn-primary" (click)="onSend(textarea.value)" style="width:100%">Send</button>
+      </div>
+      <div class="col-12 col-sm-4 col-md-4"></div>
+
+    </div>
+  </form>
+</div>

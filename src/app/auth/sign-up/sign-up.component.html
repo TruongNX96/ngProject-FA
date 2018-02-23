@@ -1,0 +1,48 @@
+<div class="container">
+  <div *ngIf="authService.account">
+    <h2>Welcome: {{fullName2}} ! </h2>
+    <h2>Your email: {{authService.account.email}}</h2>
+
+    <h3 style="color: #c3002f;" class="mb-3">What are you thinking?</h3>
+    <a class="btn btn-info mr-3 mt-3" routerLink="/search">Go to Search Books</a>
+    <a class="btn btn-info ml-3 mt-3" routerLink="/chat">Go to Chat</a>
+  </div>
+  <div class="" *ngIf="!authService.account ">
+    <form class="example-form" #signupForm="ngForm">
+
+      <mat-form-field class="example-full-width mb-3">
+        <input matInput placeholder="Your fullname" name="fullname" #fullname="ngModel" required ngModel [(ngModel)]="fullName2">
+        <mat-error *ngIf="fullname.errors?.required &&( fullname.dirty || fullname.touched)">
+          Fullname not
+          <strong>empty!</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width mb-3">
+        <input matInput placeholder="Your email" name="email" #email="ngModel" [(ngModel)]="email2" email required ngModel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <mat-error *ngIf="email.errors?.pattern &&( email.dirty || email.touched)">
+          Email not valid!
+        </mat-error>
+        <mat-error *ngIf="email.errors?.required &&( email.dirty || email.touched)">
+          Email not
+          <strong>empty!</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Your password" name="password" #password="ngModel" [(ngModel)]="password2" required
+          ngModel pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="password.errors?.pattern &&( password.dirty || password.touched)">
+          Password not valid!
+        </mat-error>
+        <mat-error *ngIf="password.errors?.required &&( password.dirty || password.touched)">
+          Password not
+          <strong>empty!</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="signup()" class="mx-5">Sign Up</button>
+    </form>
+  </div>
+</div>

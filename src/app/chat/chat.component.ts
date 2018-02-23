@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ChatService } from './chat.service';
 import * as firebase from 'firebase/app';
@@ -9,7 +9,8 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scroller') private feedContainer: ElementRef;
   time;
   chatForm: FormGroup;
   listMsg = this.chatService.listMsg;
@@ -69,6 +70,14 @@ export class ChatComponent implements OnInit {
       time: this.time.toLocaleString()
     });
     this.chatForm.reset();
+  }
+  scrollToBottom(): void {
+    this.feedContainer.nativeElement.scrollTop
+      = this.feedContainer.nativeElement.scrollHeight;
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
 }

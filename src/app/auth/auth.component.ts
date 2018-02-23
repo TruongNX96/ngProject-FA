@@ -11,7 +11,6 @@ export class AuthComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('account-auth: ', this.authService.account);
   }
 
 }

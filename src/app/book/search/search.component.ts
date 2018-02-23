@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
 
   addBook(book) {
     this.manageBookService.addBook(book);
+    alert('Successfully !'); // ^.^
   }
 
 }

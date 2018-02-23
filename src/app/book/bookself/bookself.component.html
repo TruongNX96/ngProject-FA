@@ -1,10 +1,11 @@
-<div class="col-12">
-  <h1 class="mb-4 pb-3 text-center " style="color: #c3002f;    border-bottom: 2px solid;">Library books </h1>
+<div class="col-12 row pt-4 ">
+  <h1 class="text-left col-12 col-sm-6 col-md-6 d-inline-block " style="color: #c3002f;">Library books </h1>
+  <div class="col-12 col-md-6 col-sm-6 ml-auto  d-inline-block text-right">
+    <button mat-raised-button color="accent" data-toggle="modal" data-target="#creatBook">Creat Book</button>
+  </div>
 
-  <button mat-raised-button color="primary" class="mx-5" data-toggle="modal" data-target="#creatBook">Creat Book</button>
-
-  <div class="row" *ngIf="libraryBook.length >= 1">
-    <div *ngFor="let book of libraryBook.reverse(),let index = index" class="col-12 col-sm-3 col-md-3 text-center mb-3">
+  <div class="row p-2 pt-5" *ngIf="libraryBook.length >= 1" id="all-book">
+    <div *ngFor="let book of libraryBook.reverse(),let index = index" class="col-12 col-sm-3 col-md-3 text-center mb-5" id="one-book">
       <!-- /--------------Detail Book------------------/ -->
       <div class="modal fade" id="detailBook{{index}}">
         <div class="modal-dialog">
@@ -12,7 +13,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">{{book.book.volumeInfo.title }}</h4>
+              <h4 class="modal-title text-danger">{{book.book.volumeInfo.title }}</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -24,26 +25,30 @@
                   *ngIf="book.book.volumeInfo.imageLinks.smallThumbnail == null">
               </a>
             </div>
-            <p class="" style="color:#333">Author: {{book.book.volumeInfo.authors }}</p>
+            <p class="my-2" style="color:#333">Author: {{book.book.volumeInfo.authors }}</p>
+            <p class="" style="color:#333">Author: {{book.book.volumeInfo.description }}</p>
           </div>
         </div>
       </div>
-      <div class="mb-3">
+      <!-- /--------------End Detail Book------------------/ -->
+      <div class="mb-3 col-12 hover15" id="img-book">
         <a href="book.book.volumeInfo.infoLink" target="_blank">
-          <img src="{{ book.book.volumeInfo.imageLinks.smallThumbnail}}" alt="{{book.book.volumeInfo.title}}" class="img-responsive"
-            *ngIf="book.book.volumeInfo.imageLinks.smallThumbnail != null">
-          <img src="https://semantic-ui.com/images/wireframe/image.png" alt="{{book.book.volumeInfo.title}}" class="img-responsive"
-            *ngIf="book.book.volumeInfo.imageLinks.smallThumbnail == null">
+          <figure>
+            <img src="{{ book.book.volumeInfo.imageLinks.smallThumbnail}}" alt="{{book.book.volumeInfo.title}}" class="img-responsive"
+              *ngIf="book.book.volumeInfo.imageLinks.smallThumbnail != null">
+            <img src="https://semantic-ui.com/images/wireframe/image.png" alt="{{book.book.volumeInfo.title}}" class="img-responsive"
+              *ngIf="book.book.volumeInfo.imageLinks.smallThumbnail == null">
+          </figure>
         </a>
       </div>
-      <p class="font-weight-bold" style="color:brown">{{book.book.volumeInfo.title }}</p>
-      <p class="" style="color:#333">Author: {{book.book.volumeInfo.authors }}</p>
+      <p class="font-weight-bold" style="color:brown;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{book.book.volumeInfo.title }}</p>
+      <p class="" style="color:#333;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">Author: {{book.book.volumeInfo.authors }}</p>
       <button class="btn btn-primary" (click)="delBook(book.book.id)">Delete</button>
       <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#detailBook' + index">Detail</button>
     </div>
   </div>
   <div *ngIf="libraryBook.length ==0">
-    
+
   </div>
 </div>
 
@@ -55,7 +60,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">CREAT BOOK</h4>
+        <h3 class="modal-title text-danger text-center">CREAT BOOK</h3>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -111,11 +116,13 @@
             </mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" (click)="creatBook()" class="mx-5">Creat Book</button>
+          <div class="row">
+            <div class="col-12 col-sm-1 col-md-1"></div>
+            <button mat-raised-button color="primary" style="font-size: 20px" (click)="creatBook()" class="col-12 col-sm-10 col-md-10 py-2">Creat Book</button>
+            <div class="col-12 col-sm-1 col-md-1"></div>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-

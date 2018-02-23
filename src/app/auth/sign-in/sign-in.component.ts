@@ -17,7 +17,6 @@ export class SignInComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('aaa-: ', this.authService.account);
   }
 
   // Send email and password to enforcement method signin() in AuthService

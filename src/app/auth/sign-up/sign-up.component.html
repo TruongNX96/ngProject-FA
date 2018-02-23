@@ -1,14 +1,15 @@
 <div class="container">
-  <div *ngIf="authService.account">
-    <h2>Welcome: {{fullName2}} ! </h2>
+  <div *ngIf="authService.account" class="text-center">
+    <h1>Welcome: {{fullName2}} ! </h1>
     <h2>Your email: {{authService.account.email}}</h2>
 
-    <h3 style="color: #c3002f;" class="mb-3">What are you thinking?</h3>
-    <a class="btn btn-info mr-3 mt-3" routerLink="/search">Go to Search Books</a>
-    <a class="btn btn-info ml-3 mt-3" routerLink="/chat">Go to Chat</a>
+    <h3 style="color: #c3002f;" class="mb-2 mt-5" >What are you thinking?</h3>
+    <a class="btn btn-info mr-3 mt-3" routerLink="/book/bookself">Go to Your Books</a>
+    <a class="btn btn-danger mx-3  mt-3" routerLink="/chat">Go to Chat</a>
+    <a class="btn btn-info ml-3 mt-3" routerLink="/book/search">Go to Search Books</a>
   </div>
   <div class="" *ngIf="!authService.account ">
-    <form class="example-form" #signupForm="ngForm">
+    <form class="example-form mt-2" #signupForm="ngForm">
 
       <mat-form-field class="example-full-width mb-3">
         <input matInput placeholder="Your fullname" name="fullname" #fullname="ngModel" required ngModel [(ngModel)]="fullName2">
@@ -30,8 +31,8 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Your password" name="password" #password="ngModel" [(ngModel)]="password2" required
-          ngModel pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Your password" name="password" #password="ngModel" [(ngModel)]="password2" required ngModel
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$" [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="password.errors?.pattern &&( password.dirty || password.touched)">
           Password not valid!
@@ -41,8 +42,11 @@
           <strong>empty!</strong>
         </mat-error>
       </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="signup()" class="mx-5">Sign Up</button>
+      <div class="row">
+        <div class="col-12 col-sm-1 col-md-1"></div>
+        <button mat-raised-button color="primary" style="font-size: 20px;border-radius: 30px;" (click)="signup()" class="col-12 col-sm-10 col-md-10 py-2">Sign Up</button>
+        <div class="col-12 col-sm-1 col-md-1"></div>
+      </div>
     </form>
   </div>
 </div>

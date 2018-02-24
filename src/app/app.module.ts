@@ -13,13 +13,18 @@ import { CanActivateService } from './auth/guard/canActivate.service';
 import { BookModule } from './book/book.module';
 
 import { RouterModule } from '@angular/router';
+import { CanDeActivateService } from './auth/guard/canDeActivate.service';
+import { BodyComponent } from './body/body.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    BodyComponent,
+    FooterComponent
   ],
   imports: [
 
@@ -30,7 +35,7 @@ import { RouterModule } from '@angular/router';
     ChatModule,
     BookModule
   ],
-  providers: [AuthService, CanActivateService],
+  providers: [AuthService, CanActivateService, CanDeActivateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -75,6 +75,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.feedContainer.nativeElement.scrollTop
       = this.feedContainer.nativeElement.scrollHeight;
   }
+  canDeactivate() {
+    console.log('oh yeah!');
+    console.log(this.textarea.value);
+    if (this.textarea.value !== null) {
+      return window.confirm('Are you sure?');
+    }
+    return true;
+  }
 
   ngAfterViewChecked() {
     this.scrollToBottom();

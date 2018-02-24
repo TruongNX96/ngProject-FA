@@ -8,10 +8,15 @@ import { CanActivateService } from '../auth/guard/canActivate.service';
 import { BookComponent } from '../book/book.component';
 import { BookselfComponent } from '../book/bookself/bookself.component';
 import { SearchComponent } from '../book/search/search.component';
+import { CanDeActivateService } from '../auth/guard/canDeActivate.service';
+import { BodyComponent } from '../body/body.component';
 
 
 
 const routing: Routes = [
+    {
+        path: '', component: BodyComponent
+    },
     {
         path: 'auth', component: AuthComponent, children: [
             { path: 'signup', component: SignUpComponent },
@@ -19,7 +24,8 @@ const routing: Routes = [
         ]
     },
     {
-        path: 'chat', component: ChatComponent, canActivate: [CanActivateService]
+        path: 'chat', component: ChatComponent, canActivate: [CanActivateService],
+        canDeactivate: [CanDeActivateService]
     },
     {
         path: 'book', component: BookComponent, children: [

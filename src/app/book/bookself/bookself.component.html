@@ -47,8 +47,8 @@
       <button class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#detailBook' + index">Detail</button>
     </div>
   </div>
-  <div *ngIf="libraryBook.length ==0">
-
+  <div *ngIf="libraryBook.length ==0" style="width: 100%">
+    <h2 class="mt-5 text-center">Library book is empty!</h2>
   </div>
 </div>
 
